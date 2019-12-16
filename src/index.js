@@ -30,6 +30,11 @@ function feedbackReducer(state = {}, action) {
             ...state,
             support: parseInt(action.payload),
         }
+    } else if (action.type === 'ADD_COMMENTS') {
+        return {
+            ...state,
+            comments: action.payload, // NaN
+        }
     }
     return state;
 }

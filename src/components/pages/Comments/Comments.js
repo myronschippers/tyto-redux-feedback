@@ -3,65 +3,41 @@ import { connect } from 'react-redux';
 
 class Comments extends Component {
     state = {
-        feeling: '',
-        errorMessage: null,
+        comments: '',
     }
 
     changeFeeling = (event) => {
-        if (event.target.value !== '') {
-            this.setState({
-                errorMessage: null,
-            })
-        }
 
         this.setState({
-            feeling: event.target.value,
+            comments: event.target.value,
         },
         () => {
-            console.log(this.state.feeling);
+            console.log(this.state.comments);
         })
     }
 
     clickNext = (event) => {
-        // validate that there is a score
-        if (this.state.feeling !== '') {
-            // track feeling in redux
-            this.props.dispatch({
-                type: 'ADD_FEELING',
-                payload: this.state.feeling,
-            });
-            // go to the next page
-            this.props.history.push('/understanding');
-        } else {
-            // show error
-            this.setState({
-                errorMessage: 'You must input a number.'
-            })
-        }
+        // track comments in redux
+        this.props.dispatch({
+            type: 'ADD_COMMENTS',
+            payload: this.state.comments,
+        });
+        // go to the next page
+        this.props.history.push('/review');
     }
 
     render() {
-        let errorMessageHtml = null;
-
-        if (this.state.errorMessage != null) {
-            errorMessageHtml = (
-                <div className="errMsg">
-                    {this.state.errorMessage}
-                </div>
-            );
-        }
-
         return (
             <div>
-                <h2>How are you feeling today?</h2>
+                <h2>Any comments you want to leave?</h2>
                 <div>
                     <div>
                         <label>
-                            <div>Feeling?</div>
+                            <div>Comments</div>
                             <input
-                                type="number"
-                                placeholder="Feeling 1 - 10"
-                                value={this.state.feeling}
+                                type="text"
+                                placeholder="Comments here"
+                                value={this.state.comments}
                                 onChange={this.changeFeeling}
                             />
                         </label>
@@ -69,7 +45,6 @@ class Comments extends Component {
                     <div>
                         <button onClick={this.clickNext}>NEXT</button>
                     </div>
-                    {errorMessageHtml}
                 </div>
             </div>
         );
