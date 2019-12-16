@@ -11,10 +11,11 @@ class Review extends Component {
         })
             .then((response) => {
                 console.log(response);
+                this.props.history.push('/thank-you')
             })
             .catch((err) => {
                 alert('Your feedback could not be submitted at this time.');
-                console.warn(err);
+                console.error(err);
             });
     }
 

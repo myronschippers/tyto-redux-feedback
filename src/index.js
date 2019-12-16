@@ -35,6 +35,8 @@ function feedbackReducer(state = {}, action) {
             ...state,
             comments: action.payload, // NaN
         }
+    } else if (action.type === 'CLEAR_FEEDBACK') {
+        return {}
     }
     return state;
 }
