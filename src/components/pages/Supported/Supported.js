@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 class Supported extends Component {
     state = {
-        feeling: '',
+        supported: '',
         errorMessage: null,
     }
 
@@ -15,23 +15,23 @@ class Supported extends Component {
         }
 
         this.setState({
-            feeling: event.target.value,
+            supported: event.target.value,
         },
         () => {
-            console.log(this.state.feeling);
+            console.log(this.state.supported);
         })
     }
 
     clickNext = (event) => {
         // validate that there is a score
-        if (this.state.feeling !== '') {
-            // track feeling in redux
+        if (this.state.supported !== '') {
+            // track supported in redux
             this.props.dispatch({
-                type: 'ADD_FEELING',
-                payload: this.state.feeling,
+                type: 'ADD_SUPPORT',
+                payload: this.state.supported,
             });
             // go to the next page
-            this.props.history.push('/understanding');
+            this.props.history.push('/comments');
         } else {
             // show error
             this.setState({
@@ -53,15 +53,15 @@ class Supported extends Component {
 
         return (
             <div>
-                <h2>How are you feeling today?</h2>
+                <h2>How well are you being supported?</h2>
                 <div>
                     <div>
                         <label>
-                            <div>Feeling?</div>
+                            <div>Support?</div>
                             <input
                                 type="number"
-                                placeholder="Feeling 1 - 10"
-                                value={this.state.feeling}
+                                placeholder="Support 1 - 10"
+                                value={this.state.supported}
                                 onChange={this.changeFeeling}
                             />
                         </label>

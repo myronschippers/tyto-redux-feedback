@@ -25,6 +25,11 @@ function feedbackReducer(state = {}, action) {
             ...state,
             understanding: parseInt(action.payload),
         }
+    } else if (action.type === 'ADD_SUPPORT') {
+        return {
+            ...state,
+            support: parseInt(action.payload),
+        }
     }
     return state;
 }
