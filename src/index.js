@@ -20,6 +20,11 @@ function feedbackReducer(state = {}, action) {
             ...state,
             feeling: parseInt(action.payload),
         }
+    } else if (action.type === 'ADD_UNDERSTANDING') {
+        return {
+            ...state,
+            understanding: parseInt(action.payload),
+        }
     }
     return state;
 }
