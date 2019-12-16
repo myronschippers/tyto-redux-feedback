@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Feeling extends Component {
     state = {
@@ -12,7 +13,7 @@ class Feeling extends Component {
                 errorMessage: null,
             })
         }
-        
+
         this.setState({
             feeling: event.target.value,
         },
@@ -25,7 +26,12 @@ class Feeling extends Component {
         // validate that there is a score
         if (this.state.feeling !== '') {
             // track feeling in redux
+            this.props.dispatch({
+                type: 'ADD_FEELING',
+                payload: this.state.feeling,
+            });
             // go to the next page
+            this.props.history.push('/understanding');
         } else {
             // show error
             this.setState({
@@ -70,4 +76,4 @@ class Feeling extends Component {
     }
 }
 
-export default Feeling;
+export default connect()(Feeling);

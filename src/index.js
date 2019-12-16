@@ -15,6 +15,12 @@ import logger from 'redux-logger';
 //     comments: '',
 // }
 function feedbackReducer(state = {}, action) {
+    if (action.type === 'ADD_FEELING') {
+        return {
+            ...state,
+            feeling: parseInt(action.payload),
+        }
+    }
     return state;
 }
 
